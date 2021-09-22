@@ -1,8 +1,8 @@
 package co.gov.sdm.unirExcel;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
+import java.io.FileInputStream;     
+import java.io.FileNotFoundException; 
+import java.io.FileOutputStream;  
 import java.io.IOException;
 import java.util.Iterator;
 
@@ -23,7 +23,7 @@ import org.apache.poi.ss.usermodel.CellType;
 /**
  * Controla la navegacion de la aplicacion.
  * */
-public class UnirExcelServlet extends HttpServlet {
+public class UnirExcelServlet0 extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		super.doGet(req, resp);
@@ -38,7 +38,7 @@ class UtilExcel {
 		int filasCopiadas = 0;
 		SXSSFWorkbook wbSalida = new SXSSFWorkbook(100);	    
 	    Sheet shSalida = wbSalida.createSheet();
-			    	    
+	    
 	    System.out.println("filas copiadas " + filasCopiadas);
 	    filasCopiadas = agregarArchivo(wbSalida, shSalida, "C:/datos/SH_SV_IDU_1558_2017_FICHA31.xlsx", filasCopiadas);
 	    System.out.println("filas copiadas " + filasCopiadas);
@@ -72,9 +72,11 @@ class UtilExcel {
 		FileInputStream fis = new FileInputStream(rutaArchivo);
 	    XSSFWorkbook wb = new XSSFWorkbook(fis);
 	    XSSFSheet sheet = wb.getSheetAt(0);
+	    
+	    // procesa todas las filas en la hoja
 	    Iterator<Row> it = sheet.iterator();
 	    while (it.hasNext()) {
-	    	Row r = it.next();	    	
+	    	Row r = it.next();	
 	    	
 	    	if (r.getRowNum() > 6) {
 	    		Iterator<Cell> itCell = r.cellIterator();
@@ -85,14 +87,14 @@ class UtilExcel {
 	    				filaVacia = false;
 	    				break;
 	    			}
-	    		}	    		
+	    		}
 	    		if (!filaVacia) {
 		    		Row rowSalida = shSalida.createRow(filasCopiadas);
 		    		
 		    		int nc = 0;
 		    		itCell = r.cellIterator();
 		    		while (itCell.hasNext()) {
-		    			Cell c = itCell.next();	    			
+		    			Cell c = itCell.next();
 		    			if (c.getCellType() == CellType.STRING) {
 		    				Cell cellSalida = rowSalida.createCell(nc);	    			
 		    				cellSalida.setCellValue(c.getStringCellValue());	    			
@@ -102,7 +104,7 @@ class UtilExcel {
 		    		filasCopiadas++;
 	    		}
 	    	}
-	    }	
+	    }
 	    
 	    return filasCopiadas;
 	}		

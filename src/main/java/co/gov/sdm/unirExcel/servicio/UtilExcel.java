@@ -62,9 +62,9 @@ public class UtilExcel {
 	/**
 	 * Copia la fila dada en la hoja dada en el indice dado
 	 * */
-	public static void copiarFila(Row r, Sheet shSalida, int indice) {
+	public static Row copiarFila(Row r, Sheet shSalida, int indice) {
 		if (r == null) {
-			return;
+			return null;
 		}
 		
 		Row rowSalida = shSalida.createRow(indice);
@@ -81,6 +81,8 @@ public class UtilExcel {
 			
 			nc++;
 		}
+		
+		return rowSalida;
 	}
 	
 	/**

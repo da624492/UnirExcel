@@ -50,9 +50,9 @@ public class UtilExcel2021 extends UtilExcel {
 		    for (int a = 0; a < archs.length; a++) {
 		    	File arch = archs[a];
 		    	if (arch.getName().endsWith(".xlsx")) {
-		    		filasCompiladoDem = extraerFilas2021(arch, 0, 9, shDemarcacion, filasCompiladoDem);
-		    		filasCompiladoVert = extraerFilas2021(arch, 1, 8, shVertical, filasCompiladoVert);
-		    		filasCompiladoCIV = extraerFilas2021(arch, 2, 2, shCIV, filasCompiladoCIV);
+		    		filasCompiladoDem = extraerFilas2021(arch, 0, 9, shDemarcacion, filasCompiladoDem, 29);
+		    		filasCompiladoVert = extraerFilas2021(arch, 1, 8, shVertical, filasCompiladoVert, 32);
+		    		filasCompiladoCIV = extraerFilas2021(arch, 2, 2, shCIV, filasCompiladoCIV, 3);
 		    	}
 		    }
 			
@@ -104,6 +104,7 @@ public class UtilExcel2021 extends UtilExcel {
 		celdaString(rowSalida, 0, "CONSECUTIVO");
 		celdaString(rowSalida, 1, "INTERNO_DEMARCACION");
 		celdaString(rowSalida, 2, "CIV");
+		celdaString(rowSalida, 3, "ARCHIVO ORIGINAL");
 	}
 
 	/**
@@ -144,6 +145,7 @@ public class UtilExcel2021 extends UtilExcel {
 		celdaString(rowSalida, 29, "ITEM_RET_REU_INTERNO");
 		celdaString(rowSalida, 30, "ITEM_RET_REU_CANTIDAD");
 		celdaString(rowSalida, 31, "OBSERVACIONES");
+		celdaString(rowSalida, 32, "ARCHIVO ORIGINAL");
 	}
 	
 	/**
@@ -181,30 +183,33 @@ public class UtilExcel2021 extends UtilExcel {
 		celdaString(rowSalida, 26, "INT. ITEM IMPRIMANTE");
 		celdaString(rowSalida, 27, "INT. ITEM INSTALACION");
 		celdaString(rowSalida, 28, "OBSERVACIONES");
+		celdaString(rowSalida, 29, "ARCHIVO ORIGINAL");
 	}
 	
 	/**
 	 * Extrae el contenido de la hoja dada de un archivo en formato 2021 y lo pega en shSalida
 	 * */
-	private static int extraerFilas2021(File archivo, int hoja, int primeraFilaDeDatos, Sheet shSalida, int filasCompilado) throws IOException {				
+	private static int extraerFilas2021(File archivo, int hoja, int primeraFilaDeDatos, Sheet shSalida, int filasCompilado, int colNombArch) throws IOException {				
 		FileInputStream fis = new FileInputStream(archivo);
 		XSSFWorkbook wb = new XSSFWorkbook(fis);						
 	    try {
 			XSSFSheet sheet = wb.getSheetAt(hoja);		   
 		    int filas = 0;
+		    String nombArch = archivo.getName();
 		    
 		    // procesa todas las filas en la hoja
 		    Iterator<Row> it = sheet.iterator();
 		    while (it.hasNext()) {
 		    	Row r = it.next();
 		    	if (filas >= primeraFilaDeDatos) {
-		    		String num = safeString(getCellValue(r.getCell(0)));		    	
+		    		String num = safeString(getCellValue(r.getCell(0)));
 		    		
 		    		if (num == null || num.trim().length() == 0) {
 		    			break;
 		    		}
 		    	
-		    		copiarFila(r, shSalida, filasCompilado);
+		    		Row rowSalida =copiarFila(r, shSalida, filasCompilado);
+		    		rowSalida.createCell(colNombArch).setCellValue(nombArch);
 		    		filasCompilado++;
 		    	}
 		    	

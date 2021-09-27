@@ -36,14 +36,13 @@ import org.apache.poi.ss.usermodel.CellType;
 @WebServlet(name = "UnirExcelServlet", urlPatterns = {"/servletExcel"})
 public class UnirExcelServlet extends HttpServlet {
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		super.doGet(request, response);
-		//UtilExcel.excelAConsola(new File("C:/excelesAUnir/PLANTILLA_OBRA_INTEGRALES.xlsx"));
-		//UtilExcel.copiarArchivo(new File("C:/excelesAUnir/PLANTILLA_OBRA_INTEGRALES.xlsx"), "C:/excelesAUnir/");
-		UtilExcel2021.extraer2021Todos("C:/excelesAUnir/",  "C:/excelesAUnir/");
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
+		String dirOrigen = request.getParameter("directorioEntrada");
+		String dirSalida = request.getParameter("directorioSalida");
 		
-		//UtilExcel.unir();
-		//UtilExcel.escribir();
+		UtilExcel2021.extraer2021Todos(dirOrigen, dirSalida);
+		request.setAttribute("mensaje", "Exceles compilados");
+		request.getRequestDispatcher("/paginas/index.jsp").forward(request, response);
 	}
 }
 

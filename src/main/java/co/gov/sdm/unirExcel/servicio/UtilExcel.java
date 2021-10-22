@@ -35,9 +35,7 @@ public class UtilExcel {
 		}
 		CellType ct = c.getCellType();		
 		CellStyle cs = c.getCellStyle();
-		//System.out.println("ct name " + ct.name());
-		//System.out.println("cs hidden " + cs.getHidden());
-		//System.out.println("cs locked " + cs.getLocked());
+		
 		if (ct.equals(CellType.NUMERIC)) {
 			Double val = c.getNumericCellValue();
 			if ( Math.floor(val) == val.doubleValue() ) {

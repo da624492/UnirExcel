@@ -84,6 +84,24 @@ public class UtilExcel {
 	}
 	
 	/**
+	 * Imprime la fila dada
+	 * */
+	public static void imprimirFila(Row r) {
+		if (r == null) {
+			return;
+		}	
+		System.out.println();
+		Iterator<Cell> itCell = r.cellIterator();
+		while (itCell.hasNext()) {
+			Cell c = itCell.next();
+			Object valorCelda = getCellValue(c);
+			if (valorCelda != null) {
+				System.out.print(valorCelda.toString());
+			}					
+		}		
+	}
+	
+	/**
 	 * Crea una celda con el valor dado.
 	 * */
 	public static void celdaString(Row r, int posicion, String texto) {

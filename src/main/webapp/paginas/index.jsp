@@ -20,7 +20,7 @@
 		<h1 style="margin: 0; padding:0;">Herramienta de compilación de exceles de se&ntilde;alizaci&oacute;n</h1>
 		<br>		
 		<label for="directorioEntrada">Directorio de entrada</label>
-		<input type="text" name="directorioEntrada" value="C:/senalizacion_exceles/" id="directorioEntrada" required="required">
+		<input type="text" name="directorioEntrada" value="C:/senalizacion_exceles_w/" id="directorioEntrada" required="required">
 		<br><br>
 		<label for="directorioSalida">Directorio de salida</label>
 		<input type="text" name="directorioSalida" value="C:/senalizacion_exceles/compilados/" required="required" style="width:230px;">

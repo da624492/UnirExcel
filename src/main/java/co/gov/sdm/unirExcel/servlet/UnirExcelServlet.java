@@ -8,7 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import co.gov.sdm.unirExcel.servicio.UtilExcel2021;
+import co.gov.sdm.unirExcel.servicio.UtilExcelAdriana;
+import co.gov.sdm.unirExcel.servicio.UtilExcelWilber;
 
 /**
  * Controla la navegacion de la aplicacion.
@@ -20,7 +21,8 @@ public class UnirExcelServlet extends HttpServlet {
 		String dirOrigen = request.getParameter("directorioEntrada");
 		String dirSalida = request.getParameter("directorioSalida");
 		
-		UtilExcel2021.extraer2021Todos(dirOrigen, dirSalida);
+		UtilExcelWilber.extraer(dirOrigen, dirSalida);
+		//UtilExcel2021.extraer2021Todos(dirOrigen, dirSalida);
 		request.setAttribute("mensaje", "Exceles compilados");
 		request.getRequestDispatcher("/paginas/index.jsp").forward(request, response);
 	}

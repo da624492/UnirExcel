@@ -20,9 +20,14 @@ public class UnirExcelServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
 		String dirOrigen = request.getParameter("directorioEntrada");
 		String dirSalida = request.getParameter("directorioSalida");
+		String formato = request.getParameter("formato");
 		
-		UtilExcelWilber.extraer(dirOrigen, dirSalida);
-		//UtilExcel2021.extraer2021Todos(dirOrigen, dirSalida);
+		if (formato.equalsIgnoreCase("adriana")) {
+			UtilExcelAdriana.extraer2021Todos(dirOrigen, dirSalida);
+		} else {
+			UtilExcelWilber.extraer(dirOrigen, dirSalida);	
+		}
+						
 		request.setAttribute("mensaje", "Exceles compilados");
 		request.getRequestDispatcher("/paginas/index.jsp").forward(request, response);
 	}

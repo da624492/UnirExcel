@@ -25,6 +25,12 @@
 		<label for="directorioSalida">Directorio de salida</label>
 		<input type="text" name="directorioSalida" value="C:/senalizacion_exceles/compilados/" required="required" style="width:230px;">
 		<br><br>
+		<label for="cars">Formato</label>
+		<select name="formato" id="formato">
+  			<option value="adriana" selected="selected">Adriana</option>
+  			<option value="wilber">Wilber</option>
+  		</select>
+		<br><br>
 		<button>Compilar</button>
 	</form>
 	</div>

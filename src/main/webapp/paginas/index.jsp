@@ -27,8 +27,8 @@
 		<br><br>
 		<label for="cars">Formato</label>
 		<select name="formato" id="formato">
-  			<option value="adriana" selected="selected">Adriana</option>
-  			<option value="wilber">Wilber</option>
+  			<option value="SDM" selected="selected">SDM</option>
+  			<option value="Externos">Externos</option>
   		</select>
 		<br><br>
 		<button>Compilar</button>

@@ -22,7 +22,7 @@ public class UnirExcelServlet extends HttpServlet {
 		String dirSalida = request.getParameter("directorioSalida");
 		String formato = request.getParameter("formato");
 		
-		if (formato.equalsIgnoreCase("adriana")) {
+		if (formato.equalsIgnoreCase("SDM")) {
 			UtilExcelAdriana.extraer2021Todos(dirOrigen, dirSalida);
 		} else {
 			UtilExcelWilber.extraer(dirOrigen, dirSalida);	
